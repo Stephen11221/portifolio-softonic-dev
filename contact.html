@@ -79,6 +79,56 @@
             margin-bottom: 15px;
         }
         
+        /* Loading Page Styles */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; visibility: visible; }
+            99% { opacity: 0; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+        
+        .loading-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a237e 0%, #0d1b5c 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 3s forwards;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid #ff6b6b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 30px;
+        }
+        
+        .loading-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .loading-subtext {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
         .contact-info-box h4 {
             color: var(--primary-color);
             margin-bottom: 10px;
@@ -199,6 +249,13 @@
     </style>
 </head>
 <body>
+    <!-- Loading Page -->
+    <div class="loading-page" id="loadingPage">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Stephen Muema</div>
+        <div class="loading-subtext">Loading Contact...</div>
+    </div>
+    
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container-lg">
