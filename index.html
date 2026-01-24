@@ -53,6 +53,16 @@
             align-items: center;
         }
         
+        .hero-img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            aspect-ratio: 400 / 500;
+            object-fit: cover;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+            border-radius: 50px 50px 0 0;
+        }
+        
         .hero-content h1 {
             font-size: 3.5rem;
             font-weight: bold;
@@ -66,6 +76,26 @@
             color: #333;
             margin-bottom: 30px;
             line-height: 1.8;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 0;
+                min-height: auto;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content .lead {
+                font-size: 1rem;
+            }
+            
+            .hero-img {
+                max-width: 100%;
+                margin: 20px 0;
+            }
         }
         
         .btn-primary-custom {
@@ -395,7 +425,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="text-center">
-                        <img src="img/steven.png" alt="Stephen Muema" style="width: 400px; height: 500px; object-fit: cover; box-shadow: 0 15px 50px rgba(0,0,0,0.3); border-radius: 50px 50px 0 0;">
+                        <img src="img/steven.png" alt="Stephen Muema" class="hero-img">
                         <p class="mt-3">200+ Customer Reviews ⭐</p>
                     </div>
                 </div>
