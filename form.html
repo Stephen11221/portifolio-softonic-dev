@@ -11,17 +11,24 @@
             --primary-color: #1a237e;
             --secondary-color: #ff6b6b;
             --light-bg: #f5f7ff;
+            --primary-dark: #0d1b5c;
+            --surface: rgba(255, 255, 255, 0.92);
+            --surface-border: rgba(26, 35, 126, 0.1);
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
-            background-color: var(--light-bg);
+            background:
+                radial-gradient(circle at top right, rgba(26, 35, 126, 0.12), transparent 26%),
+                radial-gradient(circle at top left, rgba(255, 107, 107, 0.08), transparent 24%),
+                var(--light-bg);
         }
         
         .navbar {
-            background-color: #fff !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.86) !important;
+            box-shadow: 0 12px 35px rgba(20, 27, 76, 0.08);
+            backdrop-filter: blur(14px);
         }
         
         .navbar-brand {
@@ -29,19 +36,34 @@
             font-size: 1.5rem;
             color: var(--primary-color) !important;
         }
+
+        .btn-talk {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 25px;
+            padding: 8px 30px;
+            box-shadow: 0 12px 30px rgba(26, 35, 126, 0.22);
+        }
+
+        .btn-talk:hover {
+            background-color: var(--primary-dark);
+            color: white;
+            transform: translateY(-1px);
+        }
         
         .form-container {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 40px 0;
+            padding: 72px 0;
         }
         
         .form-card {
-            background: white;
+            background: var(--surface);
             padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-radius: 28px;
+            box-shadow: 0 26px 60px rgba(20, 27, 76, 0.12);
+            border: 1px solid var(--surface-border);
         }
         
         .form-card h1 {
@@ -67,7 +89,7 @@
             font-weight: 600;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid var(--light-bg);
+            border-bottom: 2px solid rgba(26, 35, 126, 0.08);
         }
         
         .form-group label {
@@ -79,10 +101,11 @@
         
         .form-control, .form-select, textarea {
             border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 12px;
+            border-radius: 14px;
+            padding: 14px 16px;
             color: #333;
             font-size: 1rem;
+            background: rgba(255, 255, 255, 0.94);
         }
         
         /* Loading Page Styles */
@@ -109,7 +132,7 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            animation: fadeOut 5s forwards;
+            animation: fadeOut 1.2s forwards;
         }
         
         .loading-spinner {
@@ -189,16 +212,16 @@
         }
         
         .submit-btn:hover {
-            background-color: #0d1b5c;
+            background-color: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             color: white;
         }
         
         .form-info {
-            background-color: #e8eaf6;
+            background: linear-gradient(135deg, rgba(26,35,126,0.08), rgba(255,107,107,0.08));
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 16px;
             margin-bottom: 30px;
             border-left: 4px solid var(--primary-color);
         }
@@ -222,6 +245,18 @@
                 font-size: 1.8rem;
             }
         }
+
+        .page-footer {
+            background: linear-gradient(135deg, #1a237e 0%, #0d1b5c 100%);
+            color: white;
+            padding: 32px 0;
+            text-align: center;
+        }
+
+        .page-footer p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.85);
+        }
     </style>
 </head>
 <body>
@@ -235,7 +270,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container-lg">
-            <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="Logo" height="50" style="display: block;"></a>
+            <a class="navbar-brand" href="index.html#home"><img src="img/logo.png" alt="Logo" height="50" style="display: block;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -251,16 +286,16 @@
                         <a class="nav-link" href="index.html#portfolio">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html#about">About Us</a>
+                        <a class="nav-link" href="index.html#about">About Me</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html#blog">Blog</a>
+                        <a class="nav-link" href="index.html#testimonials">Testimonials</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                 </ul>
-                <a href="contact.html" class="btn btn-talk ms-3">Let's Talk</a>
+                <a href="form.html" class="btn btn-talk ms-3">Start a Project</a>
             </div>
         </div>
     </nav>
@@ -433,6 +468,12 @@
         </div>
     </div>
 
+    <footer class="page-footer">
+        <div class="container-lg">
+            <p>&copy; <span id="currentYear">2026</span> Stephen Muema. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
@@ -458,43 +499,47 @@
             
             // Get network information if available
             const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-            let duration = 3; // Default duration in seconds
+            let duration = 1; // Default duration in seconds
             
             if (connection) {
                 const effectiveType = connection.effectiveType;
                 // Adjust duration based on connection type
                 if (effectiveType === '4g') {
-                    duration = 2;
+                    duration = 0.8;
                 } else if (effectiveType === '3g') {
-                    duration = 3.5;
+                    duration = 1;
                 } else if (effectiveType === '2g') {
-                    duration = 5;
+                    duration = 1.4;
                 } else if (effectiveType === 'slow-2g') {
-                    duration = 6;
+                    duration = 1.6;
                 }
             } else {
                 // Fallback: detect speed by measuring image load time
                 try {
                     const speed = await detectNetworkSpeed();
                     if (speed < 100) {
-                        duration = 2; // Fast network
+                        duration = 0.8; // Fast network
                     } else if (speed < 300) {
-                        duration = 3;
+                        duration = 1;
                     } else if (speed < 600) {
-                        duration = 4;
+                        duration = 1.2;
                     } else {
-                        duration = 5; // Slow network
+                        duration = 1.5; // Slow network
                     }
                 } catch (err) {
-                    duration = 3;
+                    duration = 1;
                 }
             }
             
             // Apply the duration to the animation
             loadingPage.style.animation = `fadeOut ${duration}s forwards`;
+            window.setTimeout(() => {
+                loadingPage.style.display = 'none';
+            }, duration * 1000 + 150);
         }
         
         // Initialize adaptive loading on page load
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
         window.addEventListener('load', setAdaptiveLoadingDuration);
         setAdaptiveLoadingDuration();
     </script>

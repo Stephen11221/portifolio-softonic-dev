@@ -11,20 +11,45 @@
             --primary-color: #1a237e;
             --secondary-color: #ff6b6b;
             --light-bg: #f5f7ff;
+            --primary-dark: #0d1b5c;
+            --ink-soft: #5f6475;
+            --surface: rgba(255, 255, 255, 0.82);
+            --surface-border: rgba(26, 35, 126, 0.1);
+            --shadow-soft: 0 24px 60px rgba(19, 27, 77, 0.14);
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
+            background:
+                radial-gradient(circle at top left, rgba(255, 107, 107, 0.09), transparent 28%),
+                radial-gradient(circle at top right, rgba(26, 35, 126, 0.12), transparent 32%),
+                linear-gradient(180deg, #fbfcff 0%, #f4f7ff 100%);
         }
         
         p, li, a {
             color: #333;
         }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(26, 35, 126, 0.08);
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
         
         .navbar {
-            background-color: #fff !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.86) !important;
+            box-shadow: 0 12px 35px rgba(20, 27, 76, 0.08);
+            backdrop-filter: blur(14px);
         }
         
         .navbar-brand {
@@ -38,19 +63,33 @@
             color: white;
             border-radius: 25px;
             padding: 8px 30px;
+            box-shadow: 0 12px 30px rgba(26, 35, 126, 0.22);
         }
         
         .btn-talk:hover {
-            background-color: #0d1b5c;
+            background-color: var(--primary-dark);
             color: white;
+            transform: translateY(-1px);
         }
         
         .hero-section {
-            background-color: var(--light-bg);
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 107, 107, 0.14), transparent 20%),
+                radial-gradient(circle at 80% 10%, rgba(26, 35, 126, 0.12), transparent 24%),
+                var(--light-bg);
             padding: 80px 0;
             min-height: 100vh;
             display: flex;
             align-items: center;
+        }
+
+        .hero-content {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 28px;
+            padding: 42px;
+            box-shadow: var(--shadow-soft);
+            backdrop-filter: blur(10px);
         }
         
         .hero-img {
@@ -96,6 +135,10 @@
                 max-width: 100%;
                 margin: 20px 0;
             }
+
+            .hero-content {
+                padding: 28px;
+            }
         }
         
         .btn-primary-custom {
@@ -104,6 +147,7 @@
             border-radius: 25px;
             padding: 12px 35px;
             margin-right: 15px;
+            box-shadow: 0 14px 28px rgba(26, 35, 126, 0.2);
         }
         
         .btn-outline-custom {
@@ -111,11 +155,18 @@
             color: var(--primary-color);
             border-radius: 25px;
             padding: 10px 33px;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--primary-color);
+            color: white;
         }
         
         .about-section {
             padding: 80px 0;
-            background-color: white;
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.9), rgba(245,247,255,0.92));
         }
         
         .about-section h2 {
@@ -128,7 +179,12 @@
         }
         
         .skill-item {
-            margin-bottom: 30px;
+            margin-bottom: 24px;
+            padding: 18px 18px 16px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(26, 35, 126, 0.08);
+            border-radius: 18px;
+            box-shadow: 0 14px 30px rgba(20, 27, 76, 0.06);
         }
         
         .skill-label {
@@ -139,32 +195,13 @@
         }
         
         .progress {
-            height: 10px;
-            background-color: #e9ecef;
+            height: 12px;
+            background-color: #e9edf7;
             border-radius: 10px;
         }
         
         .progress-bar {
-            background-color: var(--primary-color);
-        }
-        
-        @keyframes xrayLine {
-            0% {
-                top: -10%;
-                right: -10%;
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                bottom: -10%;
-                left: -10%;
-                opacity: 0;
-            }
+            background: linear-gradient(90deg, var(--primary-color), #3447c9);
         }
         
         @keyframes fadeInOut {
@@ -177,19 +214,6 @@
             100% {
                 opacity: 1;
             }
-        }
-        
-        .xray-line {
-            position: fixed;
-            width: 3px;
-            height: 150%;
-            background: linear-gradient(135deg, transparent 0%, #ff6b6b 50%, transparent 100%);
-            box-shadow: 0 0 20px rgba(255, 107, 107, 0.6);
-            pointer-events: none;
-            z-index: 999;
-            animation: xrayLine 4s infinite;
-            transform: rotate(-45deg);
-            transform-origin: center;
         }
         
         /* Loading Page Styles */
@@ -216,7 +240,7 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            animation: fadeOut 5s forwards;
+            animation: fadeOut 1.2s forwards;
         }
         
         .loading-spinner {
@@ -242,7 +266,9 @@
             margin-top: 10px;
         }
         .services-section {
-            background-color: #e8eaf6;
+            background:
+                radial-gradient(circle at bottom left, rgba(26, 35, 126, 0.08), transparent 26%),
+                #e8eaf6;
             padding: 80px 0;
         }
         
@@ -256,22 +282,25 @@
         }
         
         .service-card {
-            background-color: white;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 22px;
             padding: 40px 25px;
             text-align: center;
             height: 100%;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 16px 38px rgba(20, 27, 76, 0.08);
+            border: 1px solid rgba(26, 35, 126, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 20px 45px rgba(20, 27, 76, 0.12);
         }
         
         .service-icon {
             font-size: 3rem;
             margin-bottom: 20px;
+            color: var(--secondary-color);
         }
         
         .service-card h4 {
@@ -288,7 +317,7 @@
         
         .portfolio-section {
             padding: 80px 0;
-            background-color: white;
+            background-color: #ffffff;
         }
         
         .portfolio-section h2 {
@@ -327,14 +356,26 @@
         
         .portfolio-card {
             background-color: #f5f5f5;
-            border-radius: 15px;
+            border-radius: 22px;
             overflow: hidden;
             height: 250px;
             position: relative;
             margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 18px 38px rgba(20, 27, 76, 0.12);
             background-size: cover;
             background-position: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px rgba(20, 27, 76, 0.16);
+        }
+
+        .portfolio-card a {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
         }
         
         .portfolio-card-title {
@@ -361,6 +402,25 @@
             color: #e0e0e0;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            background-color: var(--primary-dark);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -371,13 +431,10 @@
         <div class="loading-subtext">Loading Portfolio...</div>
     </div>
     
-    <!-- X-Ray Diagonal Line Animation -->
-    <div class="xray-line"></div>
-    
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container-lg">
-            <a class="navbar-brand" href="#"><img src="img/logo.png" alt="Logo" height="50" style="display: block;"></a>
+            <a class="navbar-brand" href="#home"><img src="img/logo.png" alt="Logo" height="50" style="display: block;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -393,16 +450,16 @@
                         <a class="nav-link" href="#portfolio">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About Us</a>
+                        <a class="nav-link" href="#about">About Me</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
-                <a href="contact.html" class="btn btn-talk ms-3">Let's Talk</a>
+                <a href="#contact" class="btn btn-talk ms-3">Let's Talk</a>
             </div>
         </div>
     </nav>
@@ -413,20 +470,22 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="hero-content">
+                        <div class="section-kicker">Software Developer Portfolio</div>
                         <p class="mb-2">Hi, I am</p>
                         <h1>Stephen Muema</h1>
                         <p class="text-muted mb-2"><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</p>
                         <p class="lead">Creative Software Developer with expertise in UI/UX design, full-stack web development, and mobile applications. Passionate about crafting intuitive user experiences and solving real-world problems through technology.</p>
                         <div class="mt-4">
                             <a href="mailto:muema1476@gmail.com" class="btn btn-primary-custom">Email Me</a>
-                            <p class="mt-2"><i class="fas fa-phone"></i> Phone: 0769747803</p>
+                            <a href="img/Stephen_Muema_CV 2026 24 March update.pdf" class="btn btn-outline-custom mt-3 mt-md-0" target="_blank" rel="noopener">View CV</a>
+                            <p class="mt-3 mb-0"><i class="fas fa-phone"></i> Phone: +254 769 747 803</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="text-center">
                         <img src="img/steven.png" alt="Stephen Muema" class="hero-img">
-                        <p class="mt-3">200+ Customer Reviews ⭐</p>
+                        <p class="mt-3">Selected client feedback and project highlights are featured below.</p>
                     </div>
                 </div>
             </div>
@@ -453,6 +512,7 @@
 </div> 
                 
                 <div class="col-lg-7">
+                    <div class="section-kicker">Capabilities</div>
                     <h2>Technical Skills</h2>
                     <p class="text-muted mb-4"><strong>Languages & Frameworks:</strong> HTML, CSS, JavaScript, Laravel (PHP), Flutter, Dart, VBA</p>
                     
@@ -506,6 +566,9 @@
     <!-- Services Section -->
     <section class="services-section" id="services">
         <div class="container-lg">
+            <div class="text-center">
+                <div class="section-kicker">What I Offer</div>
+            </div>
             <h2>Services & Expertise</h2>
             <p class="text-center text-muted mb-5">Delivering comprehensive solutions across design, development, and automation</p>
             
@@ -542,7 +605,7 @@
                     <div class="service-card">
                         <div class="service-icon">🎨</div>
                         <h4>Graphic Design</h4>
-                        <p class="text-muted">User-centered designs that are intuitive and functionally seamless. My approach Read more...</p>
+                        <p class="text-muted">Brand graphics, marketing assets, and polished visuals that support clear communication across digital products.</p>
                     </div>
                 </div>
             </div>
@@ -552,12 +615,16 @@
     <!-- Portfolio Section -->
     <section class="portfolio-section" id="portfolio">
         <div class="container-lg">
+            <div class="text-center">
+                <div class="section-kicker">Selected Work</div>
+            </div>
             <h2>Projects & Experience</h2>
             <p class="text-center text-muted mb-5">Showcase of web, mobile, and automation projects delivered with excellence</p>
             
             <div class="row">
                 <div class="col-md-6 col-lg-4">
-                    <div class="portfolio-card" style="background-image: url('img/websites.jpg');">
+                    <div class="portfolio-card" style="background-image: linear-gradient(135deg, rgba(26,35,126,0.75), rgba(255,107,107,0.45)), url('img/logo.png');">
+                        <a href="#contact" aria-label="Discuss a website project"></a>
                         <div class="portfolio-card-title">
                             <div>
                                 <h5>Client Websites</h5>
@@ -567,7 +634,8 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
-                    <div class="portfolio-card" style="background-image: url('img/student-system.jpg');">
+                    <div class="portfolio-card" style="background-image: linear-gradient(135deg, rgba(13,27,92,0.8), rgba(76,175,80,0.45)), url('img/po.png');">
+                        <a href="#contact" aria-label="Discuss a student management system"></a>
                         <div class="portfolio-card-title">
                             <div>
                                 <h5>Student Management System</h5>
@@ -577,7 +645,8 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
-                    <div class="portfolio-card" style="background-image: url('img/ecommerce.jpg');">
+                    <div class="portfolio-card" style="background-image: linear-gradient(135deg, rgba(26,35,126,0.8), rgba(255,152,0,0.45)), url('img/logo.png');">
+                        <a href="#contact" aria-label="Discuss an e-commerce website"></a>
                         <div class="portfolio-card-title">
                             <div>
                                 <h5>E-commerce Website</h5>
@@ -587,7 +656,8 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
-                    <div class="portfolio-card" style="background-image: url('img/andstorry.jpg');">
+                    <div class="portfolio-card" style="background-image: linear-gradient(135deg, rgba(26,35,126,0.78), rgba(33,150,243,0.5)), url('img/steven.png');">
+                        <a href="#contact" aria-label="Discuss a mobile news app"></a>
                         <div class="portfolio-card-title">
                             <div>
                                 <h5>Mobile News App - AndStorry</h5>
@@ -597,7 +667,8 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
-                    <div class="portfolio-card" style="background-image: url('img/Dashboard\ Power\ Bi\ -\ Gestão\ De\ Projetos.jpeg');">
+                    <div class="portfolio-card" style="background-image: linear-gradient(135deg, rgba(13,27,92,0.6), rgba(255,87,34,0.35)), url('img/powerbi_dash_new.png');">
+                        <a href="#contact" aria-label="Discuss Power BI automation"></a>
                         <div class="portfolio-card-title">
                             <div>
                                 <h5>Power BI Automation - Absa</h5>
@@ -608,6 +679,7 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="portfolio-card" style="background-image: url('img/hackazone.jpeg');">
+                        <a href="#contact" aria-label="Discuss an AI hackathon solution"></a>
                         <div class="portfolio-card-title">
                             <div>
                                 <h5>AI Hackathon Solution</h5>
@@ -658,10 +730,10 @@
                     
                     <h5 style="color: var(--primary-color); margin-top: 40px; margin-bottom: 20px;">Follow Me</h5>
                     <div style="display: flex; gap: 15px;">
-                        <a href="#" style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background-color: var(--primary-color); color: white; border-radius: 50%; text-decoration: none;"><i class="fab fa-github"></i></a>
-                        <a href="#" style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background-color: var(--primary-color); color: white; border-radius: 50%; text-decoration: none;"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background-color: var(--primary-color); color: white; border-radius: 50%; text-decoration: none;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background-color: var(--primary-color); color: white; border-radius: 50%; text-decoration: none;"><i class="fab fa-dribbble"></i></a>
+                        <a href="mailto:muema1476@gmail.com" class="social-link" aria-label="Send an email"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:+254769747803" class="social-link" aria-label="Call Stephen Muema"><i class="fas fa-phone"></i></a>
+                        <a href="img/Stephen_Muema_CV 2026 24 March update.pdf" class="social-link" target="_blank" rel="noopener" aria-label="Open CV"><i class="fas fa-file-alt"></i></a>
+                        <a href="testimonials.html" class="social-link" aria-label="Open testimonials"><i class="fas fa-comment-dots"></i></a>
                     </div>
                 </div>
                 
@@ -729,10 +801,10 @@
                 <div class="col-lg-3 col-md-6 mb-4">
                     <h5 class="mb-3" style="color: #ffffff; font-weight: 600;">Services</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" style="color: #e0e0e0; text-decoration: none;">Web Development</a></li>
-                        <li class="mb-2"><a href="#" style="color: #e0e0e0; text-decoration: none;">Mobile Apps</a></li>
-                        <li class="mb-2"><a href="#" style="color: #e0e0e0; text-decoration: none;">UI/UX Design</a></li>
-                        <li class="mb-2"><a href="#" style="color: #e0e0e0; text-decoration: none;">Automation</a></li>
+                        <li class="mb-2"><a href="#services" style="color: #e0e0e0; text-decoration: none;">Web Development</a></li>
+                        <li class="mb-2"><a href="#services" style="color: #e0e0e0; text-decoration: none;">Mobile Apps</a></li>
+                        <li class="mb-2"><a href="#services" style="color: #e0e0e0; text-decoration: none;">UI/UX Design</a></li>
+                        <li class="mb-2"><a href="#services" style="color: #e0e0e0; text-decoration: none;">Automation</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
@@ -757,13 +829,13 @@
             
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    <p style="color: #e0e0e0; margin-bottom: 0;">&copy; 2025 Stephen Muema. All rights reserved.</p>
+                    <p style="color: #e0e0e0; margin-bottom: 0;">&copy; <span id="currentYear">2026</span> Stephen Muema. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <div class="d-flex justify-content-center justify-content-md-end gap-3">
-                        <a href="#" style="color: #e0e0e0; text-decoration: none;" title="GitHub"><i class="fab fa-github"></i> GitHub</a>
-                        <a href="#" style="color: #e0e0e0; text-decoration: none;" title="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                        <a href="#" style="color: #e0e0e0; text-decoration: none;" title="Twitter"><i class="fab fa-twitter"></i> Twitter</a>
+                        <a href="mailto:muema1476@gmail.com" style="color: #e0e0e0; text-decoration: none;" title="Email"><i class="fas fa-envelope"></i> Email</a>
+                        <a href="#contact" style="color: #e0e0e0; text-decoration: none;" title="Contact"><i class="fas fa-paper-plane"></i> Contact</a>
+                        <a href="img/Stephen_Muema_CV 2026 24 March update.pdf" style="color: #e0e0e0; text-decoration: none;" title="View CV" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> CV</a>
                     </div>
                 </div>
                 <div class="col-12 text-center mt-4 pt-3 border-top border-secondary border-opacity-50">
@@ -791,7 +863,7 @@
                 hour12: true
             };
             
-            const dateTimeString = now.toLocaleDateString('en-US', options);
+            const dateTimeString = now.toLocaleString('en-US', options);
             const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
             
             document.getElementById('currentDateTime').textContent = ` \u{1F4C5} ${dateTimeString} (${timezone})`;
@@ -848,6 +920,8 @@
         
         // Load testimonials when page loads
         document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
             // Initialize with 5 default testimonials if none exist
             let testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
             if (testimonials.length === 0) {
@@ -929,40 +1003,43 @@
             
             // Get network information if available
             const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-            let duration = 3; // Default duration in seconds
+            let duration = 1; // Default duration in seconds
             
             if (connection) {
                 const effectiveType = connection.effectiveType;
                 // Adjust duration based on connection type
                 if (effectiveType === '4g') {
-                    duration = 2;
+                    duration = 0.8;
                 } else if (effectiveType === '3g') {
-                    duration = 3.5;
+                    duration = 1;
                 } else if (effectiveType === '2g') {
-                    duration = 5;
+                    duration = 1.4;
                 } else if (effectiveType === 'slow-2g') {
-                    duration = 6;
+                    duration = 1.6;
                 }
             } else {
                 // Fallback: detect speed by measuring image load time
                 try {
                     const speed = await detectNetworkSpeed();
                     if (speed < 100) {
-                        duration = 2; // Fast network
+                        duration = 0.8; // Fast network
                     } else if (speed < 300) {
-                        duration = 3;
+                        duration = 1;
                     } else if (speed < 600) {
-                        duration = 4;
+                        duration = 1.2;
                     } else {
-                        duration = 5; // Slow network
+                        duration = 1.5; // Slow network
                     }
                 } catch (err) {
-                    duration = 3;
+                    duration = 1;
                 }
             }
             
             // Apply the duration to the animation
             loadingPage.style.animation = `fadeOut ${duration}s forwards`;
+            window.setTimeout(() => {
+                loadingPage.style.display = 'none';
+            }, duration * 1000 + 150);
         }
         
         // Initialize adaptive loading on page load
