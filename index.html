@@ -58,6 +58,42 @@
             font-size: 1.5rem;
             color: var(--primary-color) !important;
         }
+
+        .navbar-nav {
+            gap: 8px;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 10px 16px !important;
+            border-radius: 999px;
+            color: var(--ink-soft) !important;
+            font-weight: 600;
+            transition: color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+            background: rgba(26, 35, 126, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            background: rgba(26, 35, 126, 0.12);
+            box-shadow: inset 0 0 0 1px rgba(26, 35, 126, 0.08);
+        }
+
+        .nav-link.active::after {
+            content: "";
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            bottom: 6px;
+            height: 3px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+        }
         
         .btn-talk {
             background-color: var(--primary-color);
@@ -65,6 +101,7 @@
             border-radius: 25px;
             padding: 8px 30px;
             box-shadow: 0 12px 30px rgba(26, 35, 126, 0.22);
+            font-weight: 700;
         }
         
         .btn-talk:hover {
@@ -148,6 +185,27 @@
 
             .about-visual-card img {
                 max-width: 220px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                margin-top: 16px;
+                padding: 18px;
+                border-radius: 20px;
+                background: rgba(255, 255, 255, 0.94);
+                box-shadow: 0 18px 40px rgba(20, 27, 76, 0.08);
+            }
+
+            .navbar-nav {
+                gap: 4px;
+            }
+
+            .btn-talk.ms-3 {
+                margin-left: 0 !important;
+                margin-top: 14px;
+                display: inline-flex;
+                justify-content: center;
             }
         }
         
@@ -478,7 +536,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
+                        <a class="nav-link active" href="#home" aria-current="page">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#services">Services</a>
@@ -1023,8 +1081,47 @@
             currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
             displayTestimonials();
         }
+
+        function initNavbarTracking() {
+            const navLinks = Array.from(document.querySelectorAll('.navbar .nav-link[href^="#"]'));
+            const trackedSections = navLinks
+                .map((link) => {
+                    const section = document.querySelector(link.getAttribute('href'));
+                    return section ? { link, section } : null;
+                })
+                .filter(Boolean);
+
+            if (!trackedSections.length) {
+                return;
+            }
+
+            const setActiveLink = () => {
+                const triggerLine = window.scrollY + window.innerHeight * 0.3;
+                let activeItem = trackedSections[0];
+
+                trackedSections.forEach((item) => {
+                    if (item.section.offsetTop <= triggerLine) {
+                        activeItem = item;
+                    }
+                });
+
+                trackedSections.forEach((item) => {
+                    const isActive = item === activeItem;
+                    item.link.classList.toggle('active', isActive);
+                    if (isActive) {
+                        item.link.setAttribute('aria-current', 'page');
+                    } else {
+                        item.link.removeAttribute('aria-current');
+                    }
+                });
+            };
+
+            setActiveLink();
+            window.addEventListener('scroll', setActiveLink, { passive: true });
+        }
         
         initAdaptiveLoader();
+        initNavbarTracking();
     </script>
 </body>
 </html>
